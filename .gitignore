@@ -1,0 +1,7 @@
+/.metadata/
+/RemoteSystemsTempFiles/
+/Ateam_AR_Main/.settings/
+/Ateam_AR_Main/Debug/
+*.cproject
+*.project
+*.cfg

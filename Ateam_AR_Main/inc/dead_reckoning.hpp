@@ -49,8 +49,11 @@ private:
 
 	static constexpr uint16_t PPR_ = 8192;
 	static constexpr float WHEEL_DIA_ = 50.8;
-	static constexpr float ODOMATER_DIST_ = 300.0;
-	static constexpr float CTRL_INTERVAL_ = 0.0010;
+	static constexpr float ODMATER_DIST_ = 244.6;
+	static constexpr float CTRL_INTERVAL_ = 0.010;
+
+	static constexpr float ANGLE_X_ENC = M_PI;
+	static constexpr float ANGLE_Y_ENC = M_PI * 0.50f;
 };
 
 #endif /* DEAD_RECKONING_HPP_ */

@@ -29,7 +29,11 @@ public:
 
 	inline void setPosX(const float set_pos){ pos_.posX(set_pos); }
 	inline void setPosY(const float set_pos){ pos_.posY(set_pos); }
-	inline void setPosTheta(const float set_pos){ gyro_sensor_.setAngle(pos_.posTheta(set_pos)); }
+	inline void setPosTheta(const float set_pos)
+	{
+		gyro_sensor_.setAngle(pos_.posTheta(set_pos));
+		pos_.posTheta(set_pos);
+	}
 	inline void setPos(const float set_pos_x, const float set_pos_y, const float set_pos_theta)
 	{
 		setPosX(set_pos_x);

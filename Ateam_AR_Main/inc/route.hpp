@@ -11,50 +11,60 @@
 #include "running_param_set.hpp"
 #include <array>
 
+#ifndef M_PI
+#define M_PI		3.14159265358979323846
+#endif
+
 using Tpos = float;
 using Tvel = uint32_t;
 
-constexpr std::array<std::array<RunningParamSet<Tpos, Tvel>, 17>, 2> ROUTE =
+constexpr std::array<std::array<RunningParamSet<Tpos, Tvel>, 12>, 3> ROUTE =
 {{
 	{
-		std::make_pair<position<Tpos>, Tvel>({0.0f		, 0.0f		, 0.0f		} , 0		) ,
-		std::make_pair<position<Tpos>, Tvel>({200.0f	, 200.0f	, 0.0f		} , 50		) ,
-		std::make_pair<position<Tpos>, Tvel>({350.0f	, 400.0f	, 0.0f		} , 100		) ,
-		std::make_pair<position<Tpos>, Tvel>({450.0f	, 600.0f	, 0.0f		} , 150		) ,
-		std::make_pair<position<Tpos>, Tvel>({500.0f	, 800.0f	, 0.0f		} , 200		) ,
-		std::make_pair<position<Tpos>, Tvel>({450.0f	, 1000.0f	, 0.0f		} , 250		) ,
-		std::make_pair<position<Tpos>, Tvel>({350.0f	, 1200.0f	, 0.0f		} , 300		) ,
-		std::make_pair<position<Tpos>, Tvel>({200.0f	, 1400.0f	, 0.0f		} , 350		) ,
-		std::make_pair<position<Tpos>, Tvel>({0.0f		, 1600.0f	, 0.0f		} , 400		) ,
-		std::make_pair<position<Tpos>, Tvel>({-200.0f	, 1800.0f	, 0.0f		} , 400		) ,
-		std::make_pair<position<Tpos>, Tvel>({-350.0f	, 2000.0f	, 0.0f		} , 400		) ,
-		std::make_pair<position<Tpos>, Tvel>({-450.0f	, 2200.0f	, 0.0f		} , 350		) ,
-		std::make_pair<position<Tpos>, Tvel>({-500.0f	, 2400.0f	, 0.0f		} , 250		) ,
-		std::make_pair<position<Tpos>, Tvel>({-450.0f	, 2600.0f	, 0.0f		} , 200		) ,
-		std::make_pair<position<Tpos>, Tvel>({-350.0f	, 2800.0f	, 0.0f		} , 150		) ,
-		std::make_pair<position<Tpos>, Tvel>({-200.0f	, 3000.0f	, 0.0f		} , 100		) ,
-		std::make_pair<position<Tpos>, Tvel>({0.0f		, 3200.0f	, 0.0f		} , 50		)
+		std::make_pair<position<Tpos>, Tvel>({-600.0f	, 1800.0f	, M_PI		} , 0	) ,
+		std::make_pair<position<Tpos>, Tvel>({-600.0f	, 2000.0f	, M_PI		} , 200	) ,
+		std::make_pair<position<Tpos>, Tvel>({-600.0f	, 2200.0f	, M_PI		} , 400	) ,
+		std::make_pair<position<Tpos>, Tvel>({-600.0f	, 2400.0f	, M_PI		} , 600	) ,
+		std::make_pair<position<Tpos>, Tvel>({-600.0f	, 2600.0f	, M_PI		} , 600	) ,
+		std::make_pair<position<Tpos>, Tvel>({-600.0f	, 3600.0f	, M_PI		} , 600	) ,
+		std::make_pair<position<Tpos>, Tvel>({-700.0f	, 4500.0f	, M_PI		} , 400	) ,
+		std::make_pair<position<Tpos>, Tvel>({-800.0f	, 5000.0f	, M_PI		} , 300	) ,
+		std::make_pair<position<Tpos>, Tvel>({-1000.0f	, 5200.0f	, M_PI		} , 300	) ,
+		std::make_pair<position<Tpos>, Tvel>({-1400.0f	, 5400.0f	, M_PI		} , 400	) ,
+		std::make_pair<position<Tpos>, Tvel>({-2550.0f	, 5400.0f	, M_PI		} , 400	) ,
+		std::make_pair<position<Tpos>, Tvel>({-2750.0f	, 4749.0f	, M_PI		} , 200	) ,
 	}
 	,
 	{
-		std::make_pair<position<Tpos>, Tvel>({0.0f		, 3200.0f	, 0.0f		} , 0		) ,
-		std::make_pair<position<Tpos>, Tvel>({200.0f	, 3000.0f	, 0.0f		} , 50		) ,
-		std::make_pair<position<Tpos>, Tvel>({350.0f	, 2800.0f	, 0.0f		} , 100		) ,
-		std::make_pair<position<Tpos>, Tvel>({450.0f	, 2600.0f	, 0.0f		} , 150		) ,
-		std::make_pair<position<Tpos>, Tvel>({500.0f	, 2400.0f	, 0.0f		} , 200		) ,
-		std::make_pair<position<Tpos>, Tvel>({450.0f	, 2200.0f	, 0.0f		} , 250		) ,
-		std::make_pair<position<Tpos>, Tvel>({350.0f	, 2000.0f	, 0.0f		} , 300		) ,
-		std::make_pair<position<Tpos>, Tvel>({200.0f	, 1800.0f	, 0.0f		} , 350		) ,
-		std::make_pair<position<Tpos>, Tvel>({0.0f		, 1600.0f	, 0.0f		} , 400		) ,
-		std::make_pair<position<Tpos>, Tvel>({-200.0f	, 1400.0f	, 0.0f		} , 400		) ,
-		std::make_pair<position<Tpos>, Tvel>({-350.0f	, 1200.0f	, 0.0f		} , 400		) ,
-		std::make_pair<position<Tpos>, Tvel>({-450.0f	, 1000.0f	, 0.0f		} , 350		) ,
-		std::make_pair<position<Tpos>, Tvel>({-500.0f	, 800.0f	, 0.0f		} , 250		) ,
-		std::make_pair<position<Tpos>, Tvel>({-450.0f	, 600.0f	, 0.0f		} , 200		) ,
-		std::make_pair<position<Tpos>, Tvel>({-350.0f	, 400.0f	, 0.0f		} , 150		) ,
-		std::make_pair<position<Tpos>, Tvel>({-200.0f	, 200.0f	, 0.0f		} , 100		) ,
-		std::make_pair<position<Tpos>, Tvel>({0.0f		, 0.0f		, 0.0f		} , 50		)
+		std::make_pair<position<Tpos>, Tvel>({-2750.0f	, 4749.0f	, M_PI		} , 100	) ,
+		std::make_pair<position<Tpos>, Tvel>({-2750.0f	, 4749.0f	, M_PI		} , 100	) ,
+		std::make_pair<position<Tpos>, Tvel>({-2750.0f	, 4749.0f	, M_PI		} , 100	) ,
+		std::make_pair<position<Tpos>, Tvel>({-2750.0f	, 4749.0f	, M_PI		} , 100	) ,
+		std::make_pair<position<Tpos>, Tvel>({-2750.0f	, 4749.0f	, M_PI		} , 100	) ,
+		std::make_pair<position<Tpos>, Tvel>({-2750.0f	, 4749.0f	, M_PI		} , 100	) ,
+		std::make_pair<position<Tpos>, Tvel>({-2750.0f	, 4749.0f	, M_PI		} , 100	) ,
+		std::make_pair<position<Tpos>, Tvel>({-2750.0f	, 4749.0f	, M_PI		} , 100	) ,
+		std::make_pair<position<Tpos>, Tvel>({-2750.0f	, 4749.0f	, M_PI		} , 100	) ,
+		std::make_pair<position<Tpos>, Tvel>({-2750.0f	, 5000.0f	, M_PI		} , 200	) ,
+		std::make_pair<position<Tpos>, Tvel>({-2750.0f	, 5800.0f	, M_PI		} , 400	) ,
+		std::make_pair<position<Tpos>, Tvel>({-2750.0f	, 6251.0f	, M_PI		} , 200	)
 	}
+	,
+	{
+		std::make_pair<position<Tpos>, Tvel>({-2750.0f	, 6251.0f	, M_PI		} , 100	) ,
+		std::make_pair<position<Tpos>, Tvel>({-2750.0f	, 6251.0f	, M_PI		} , 100	) ,
+		std::make_pair<position<Tpos>, Tvel>({-2750.0f	, 6251.0f	, M_PI		} , 100	) ,
+		std::make_pair<position<Tpos>, Tvel>({-2750.0f	, 6251.0f	, M_PI		} , 100	) ,
+		std::make_pair<position<Tpos>, Tvel>({-2750.0f	, 6000.0f	, M_PI		} , 200	) ,
+		std::make_pair<position<Tpos>, Tvel>({-2350.0f	, 5600.0f	, M_PI		} , 400	) ,
+		std::make_pair<position<Tpos>, Tvel>({-1000.0f	, 5600.0f	, M_PI		} , 400	) ,
+		std::make_pair<position<Tpos>, Tvel>({-800.0f	, 5800.0f	, M_PI*0.5f	} , 400	) ,
+		std::make_pair<position<Tpos>, Tvel>({-800.0f	, 7000.0f	, M_PI*0.5f	} , 400	) ,
+		std::make_pair<position<Tpos>, Tvel>({-1200.0f	, 7600.0f	, M_PI*0.5f	} , 400	) ,
+		std::make_pair<position<Tpos>, Tvel>({-2200.0f	, 7600.0f	, M_PI*0.5f	} , 300	) ,
+		std::make_pair<position<Tpos>, Tvel>({-2200.0f	, 8084.0f	, M_PI*0.5f	} , 200	) ,
+	}
+
 }};
 
 #endif /* ROUTE_HPP_ */

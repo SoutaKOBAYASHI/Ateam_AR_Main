@@ -15,6 +15,7 @@ void Sequence::runSequence()
 	switch(now_sequence_num_)
 	{
 	case 0:
+		auto_running_.dead_reckoning_.setPos(-600.0f, 1800.0f, M_PI);
 		if(!start_switch_.readNowState())
 		{
 			++now_sequence_num_;
@@ -29,14 +30,14 @@ void Sequence::runSequence()
 		break;
 
 	case 2:
-		if(!start_switch_.readNowState())
+		if(auto_running_.pointControl(1))
 		{
 			++now_sequence_num_;
 		}
 		break;
 
 	case 3:
-		if(auto_running_.pointControl(1) == 1)
+		if(auto_running_.pointControl(2))
 		{
 			++now_sequence_num_;
 		}

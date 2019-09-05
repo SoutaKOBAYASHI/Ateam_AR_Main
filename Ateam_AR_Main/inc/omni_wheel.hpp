@@ -19,9 +19,6 @@
 #define M_PI		3.14159265358979323846
 #endif
 
-extern int32_t wheelspeed;
-extern int32_t runvector;
-
 class OmniWheel4s
 {
 public:
@@ -51,15 +48,12 @@ public:
 			break;
 		}
 	}
-	void setRunningVector(const float vel, const float theta, const int32_t rolling_vel = 0)
+	inline void setRunningVector(const float vel, const float theta, const int32_t rolling_vel = 0)
 	{
 		const float vec1 = vel * std::cos(theta + M_PI * 0.25f);
 		const float vec2 = vel * std::sin(theta + M_PI * 0.25f);
 
 		constexpr float VEL_TO_RPM_GAIN = 60 / WHEEL_DIA_;
-
-		runvector = -vec1 * VEL_TO_RPM_GAIN;
-		wheelspeed = rolling_vel + static_cast<int32_t>(-vec1 * VEL_TO_RPM_GAIN);
 
 		wheel1.setSpeed(rolling_vel + static_cast<int32_t>(vec2 * VEL_TO_RPM_GAIN), MotorDriver::MotorDriveMode::PID);
 		wheel2.setSpeed(rolling_vel + static_cast<int32_t>(-vec1 * VEL_TO_RPM_GAIN), MotorDriver::MotorDriveMode::PID);

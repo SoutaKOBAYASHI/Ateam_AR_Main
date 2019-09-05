@@ -8,9 +8,7 @@
 
 #include <auto_running.hpp>
 
-float vel, angle, x, y;
-extern float a;
-uint32_t point = 0;
+extern float x, y, theta;
 
 int AutoRunning::pointControl(const uint8_t route_num)
 {
@@ -52,21 +50,15 @@ int AutoRunning::pointControl(const uint8_t route_num)
 	rolling_pid_.setTargetVal(ROUTE.at(route_num).at(point_num).readPos().posTheta());
 	rolling_pid_.update(dead_reckoning_.readPosTheta());
 
-
-
 	/*Drive wheel*/
 	omni_wheel_.setRunningVector
-		((running_pid_.getControlVal()), run_vector.getVector_pol().second - (M_PI * 0.5), static_cast<int32_t>(rolling_pid_.getControlVal()));
-	a = rolling_pid_.getControlVal();
-
-	vel = run_vector.getVector_pol().first;
-	angle = dead_reckoning_.pos().posTheta();
-	x = run_vector.getVector_rec().first;
-	y = run_vector.getVector_rec().second;
+		((running_pid_.getControlVal()), run_vector.getVector_pol().second - (M_PI * 0.5) - dead_reckoning_.pos().posTheta(), static_cast<int32_t>(rolling_pid_.getControlVal()));
 
 	last_route_num = route_num;
 
-	point = point_num;
+	x = dead_reckoning_.pos().posX();
+	y = dead_reckoning_.pos().posY();
+	theta = dead_reckoning_.pos().posTheta();
 
 	if(error_clear_ && (point_num == ROUTE.at(route_num).size() - 1)) return 1;
 	return 0;

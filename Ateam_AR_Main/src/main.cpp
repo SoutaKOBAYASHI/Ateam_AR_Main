@@ -18,14 +18,7 @@
 
 #include <string>
 
-extern float vel;
-extern float angle;
-extern float x;
-extern float y;
-extern uint32_t point;
-float a = 0;
-int32_t wheelspeed = 0;
-int32_t runvector = 0;
+float x = 0.0f, y = 0.0f, theta = 0.0f;
 
 void clockInit();
 
@@ -47,7 +40,11 @@ int main(void)
 	while(true)
 	{
 		debug_string.clear();
-		debug_string += std::to_string(point) + ", " + std::to_string(vel) + ", " + std::to_string(y) + ", " + std::to_string(wheelspeed) + ", " + std::to_string(runvector) + "\n";
+
+		debug_string =
+				"X:" + std::to_string(x) +
+				"Y:" + std::to_string(y) +
+				"Theta:" + std::to_string(theta) + "\n";
 
 		debug_port.uart_interface.transmitData(debug_string);
 	}

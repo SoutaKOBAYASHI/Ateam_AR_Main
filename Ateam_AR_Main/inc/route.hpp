@@ -26,12 +26,12 @@ constexpr std::array<std::array<RunningParamSet<Tpos, Tvel>, 11>, 4> ROUTE =
 		std::make_pair<position<Tpos>, Tvel>({-600.0f	, 2200.0f	, M_PI		} , 400	) ,
 		std::make_pair<position<Tpos>, Tvel>({-600.0f	, 2400.0f	, M_PI		} , 600	) ,
 		std::make_pair<position<Tpos>, Tvel>({-600.0f	, 2600.0f	, M_PI		} , 600	) ,
-		std::make_pair<position<Tpos>, Tvel>({-600.0f	, 3600.0f	, M_PI		} , 500	) ,
-		std::make_pair<position<Tpos>, Tvel>({-700.0f	, 4500.0f	, M_PI		} , 400	) ,
-		std::make_pair<position<Tpos>, Tvel>({-800.0f	, 5000.0f	, M_PI		} , 300	) ,
-		std::make_pair<position<Tpos>, Tvel>({-1000.0f	, 5200.0f	, M_PI		} , 300	) ,
-		std::make_pair<position<Tpos>, Tvel>({-1400.0f	, 5400.0f	, M_PI		} , 300	) ,
-		std::make_pair<position<Tpos>, Tvel>({-2550.0f	, 5400.0f	, M_PI		} , 200	) ,
+		std::make_pair<position<Tpos>, Tvel>({-600.0f	, 3600.0f	, M_PI		} , 600	) ,
+		std::make_pair<position<Tpos>, Tvel>({-700.0f	, 4500.0f	, M_PI		} , 500	) ,
+		std::make_pair<position<Tpos>, Tvel>({-800.0f	, 5000.0f	, M_PI		} , 400	) ,
+		std::make_pair<position<Tpos>, Tvel>({-1000.0f	, 5200.0f	, M_PI		} , 400	) ,
+		std::make_pair<position<Tpos>, Tvel>({-1400.0f	, 5400.0f	, M_PI		} , 400	) ,
+		std::make_pair<position<Tpos>, Tvel>({-2550.0f	, 5400.0f	, M_PI		} , 300	) ,
 	}
 	,
 	{
@@ -58,9 +58,9 @@ constexpr std::array<std::array<RunningParamSet<Tpos, Tvel>, 11>, 4> ROUTE =
 		std::make_pair<position<Tpos>, Tvel>({-2750.0f	, 4749.0f	, M_PI		} , 100	) ,
 		std::make_pair<position<Tpos>, Tvel>({-2750.0f	, 4749.0f	, M_PI		} , 100	) ,
 		std::make_pair<position<Tpos>, Tvel>({-2750.0f	, 4749.0f	, M_PI		} , 100	) ,
-		std::make_pair<position<Tpos>, Tvel>({-2750.0f	, 5000.0f	, M_PI		} , 200	) ,
+		std::make_pair<position<Tpos>, Tvel>({-2750.0f	, 5000.0f	, M_PI		} , 300	) ,
 		std::make_pair<position<Tpos>, Tvel>({-2750.0f	, 5800.0f	, M_PI		} , 400	) ,
-		std::make_pair<position<Tpos>, Tvel>({-2750.0f	, 6251.0f	, M_PI		} , 200	)
+		std::make_pair<position<Tpos>, Tvel>({-2750.0f	, 6251.0f	, M_PI		} , 300	)
 	}
 	,
 	{

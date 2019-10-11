@@ -33,9 +33,9 @@ private:
 
 public:
 	Sequence() = delete;
-	Sequence(UART& gyro_uart_interface, ControlAreaNetwork& can_interface) :
+	Sequence(const AutoRunning::AutoRunningParamsStruct& auto_running_params, UART& gyro_uart_interface, ControlAreaNetwork& can_interface) :
 		systick_( [&](){ runSequence(); } ),
-		auto_running_(gyro_uart_interface, can_interface),
+		auto_running_(auto_running_params, gyro_uart_interface, can_interface),
 		can_interrupt_( [&](const CanRxMsg& receive_msg){ canReceiveMsg(receive_msg); } ),
 		can_interface_(can_interface){ }
 

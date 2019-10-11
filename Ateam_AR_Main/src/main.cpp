@@ -15,6 +15,7 @@
 #include "uart.hpp"
 #include "control_area_network.hpp"
 #include "sequence.hpp"
+#include "autorunning_params.hpp"
 
 #include <string>
 
@@ -32,9 +33,7 @@ int main(void)
 	UART_Initialize<uartName::uart2, 9600> debug_port;
 	CAN_Initialize<0x00> can;
 
-	Sequence sequence(gyro_uart.uart_interface, can.can_interface);
-
-	OmniWheel4s omni_wheel_(can.can_interface);
+	Sequence sequence(AUTO_RUNNING_PARAMS, gyro_uart.uart_interface, can.can_interface);
 
 	std::string debug_string;
 	while(true)

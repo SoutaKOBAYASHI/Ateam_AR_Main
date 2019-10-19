@@ -19,7 +19,7 @@
 
 #include <string>
 
-float x = 0.0f, y = 0.0f, theta = 0.0f;
+float x = 0.0f, y = 0.0f, theta = 0.0f, run_vec_x = 0.0f, run_vec_y = 0.0f, run_vec_theta = 0.0f, run_vec_size = 0.0f;
 
 void clockInit();
 
@@ -30,22 +30,16 @@ int main(void)
 	SysTick_Interrupt::init(100, 3);
 
 	UART_Initialize<uartName::uart1, 115200> gyro_uart;
-	UART_Initialize<uartName::uart2, 9600> debug_port;
+	UART_Initialize<uartName::uart2, 38400> pc_uart_port;
 	CAN_Initialize<0x00> can;
 
-	Sequence sequence(AUTO_RUNNING_PARAMS, gyro_uart.uart_interface, can.can_interface);
+	IO_sigPins<ioName::sig7, ioState::input, pinPullDirection::up> emergency;
+	bool emergency_state = !emergency.readNowState();
 
-	std::string debug_string;
+	Sequence sequence(emergency_state, MECHA_CONTROLER_ADDRESS, AUTO_RUNNING_PARAMS, gyro_uart.uart_interface, pc_uart_port.uart_interface, can.can_interface);
 	while(true)
 	{
-		debug_string.clear();
-
-		debug_string =
-				"X:" + std::to_string(x) +
-				"Y:" + std::to_string(y) +
-				"Theta:" + std::to_string(theta) + "\n";
-
-		debug_port.uart_interface.transmitData(debug_string);
+		emergency_state = !emergency.readNowState();
 	}
 }
 

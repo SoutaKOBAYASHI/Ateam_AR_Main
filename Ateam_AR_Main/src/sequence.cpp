@@ -19,9 +19,6 @@ void Sequence::runSequence_()
 	bool h1500_mecha_falled = false;
 	bool h2000_mecha_falled = false;
 
-	static uint16_t update_count = 0;
-	constexpr uint16_t UPDATE_ENABLE_COUNT = 100;
-
 	auto_running_.deadReckoningUpdate();
 
 	x = auto_running_.dead_reckoning_.readPosX();
@@ -40,7 +37,7 @@ void Sequence::runSequence_()
 
 	if(emergency_remote)
 	{
-		if(!emergency_state_)set_tepe_led_color_(255, 0, 0);
+		if(emergency_state_)set_tepe_led_color_(255, 0, 0);
 		return;
 	}
 
@@ -78,7 +75,7 @@ void Sequence::runSequence_()
 		break;
 
 	case 1:
-		if(auto_running_.pointControl_PID(0))
+		if(auto_running_.pointControl(0))
 		{
 			sendCmd_(0x04);
 			++now_sequence_num_;
@@ -99,7 +96,7 @@ void Sequence::runSequence_()
 			sendCmd_(0x01);
 			h1500_mecha_falled = true;
 		}
-		if(auto_running_.pointControl_PID(1) && received_msg_ == 0x01)
+		if(auto_running_.pointControl(1) && received_msg_ == 0x01)
 		{
 			sendCmd_(0x02);
 			++now_sequence_num_;
@@ -115,7 +112,7 @@ void Sequence::runSequence_()
 		break;
 
 	case 5:
-		if(auto_running_.pointControl_PID(2))
+		if(auto_running_.pointControl(2))
 		{
 			sendCmd_(0x05);
 			++now_sequence_num_;
@@ -131,7 +128,7 @@ void Sequence::runSequence_()
 		break;
 
 	case 7:
-		if(auto_running_.pointControl_PID(3))
+		if(auto_running_.pointControl(3))
 		{
 			sendCmd_(0x06);
 			++now_sequence_num_;
@@ -156,7 +153,7 @@ void Sequence::runSequence_()
 		break;
 
 	case 10:
-		if(auto_running_.pointControl_PID(4) && received_msg_ == 0x07)
+		if(auto_running_.pointControl(4) && received_msg_ == 0x07)
 		{
 			sendCmd_(0x08);
 			++now_sequence_num_;
@@ -175,7 +172,7 @@ void Sequence::runSequence_()
 			sendCmd_(0x09);
 			h1500_mecha_falled = true;
 		}
-		if(auto_running_.pointControl_PID(5))
+		if(auto_running_.pointControl(5))
 		{
 			sendCmd_(0x0A);
 			++now_sequence_num_;
@@ -192,7 +189,7 @@ void Sequence::runSequence_()
 		break;
 
 	case 14:
-		if(auto_running_.pointControl_PID(6))
+		if(auto_running_.pointControl(6))
 		{
 			++now_sequence_num_;
 		}
@@ -246,6 +243,8 @@ void Sequence::receiveLrfData(const uint8_t receive_byte)
 	static uint8_t receive_count = 0;
 	static std::array<uint8_t, 6> receive_data_arr = {};
 
+	constexpr float LRF_WEIGHT = 0.45f;
+
 	uint8_t check_sum = 0;
 
 	int16_t receive_pos_x = 0;
@@ -266,8 +265,14 @@ void Sequence::receiveLrfData(const uint8_t receive_byte)
 				receive_pos_x = static_cast<int16_t>(receive_data_arr.at(1)) << 8 | static_cast<int16_t>(receive_data_arr.at(2));
 				receive_pos_y = static_cast<int16_t>(receive_data_arr.at(3)) << 8 | static_cast<int16_t>(receive_data_arr.at(4));
 
-				if(receive_pos_x != 0)auto_running_.dead_reckoning_.setPosX(static_cast<float>(receive_pos_x));
-				if(receive_pos_y != 0)auto_running_.dead_reckoning_.setPosY(static_cast<float>(receive_pos_y));
+				if(receive_pos_x != 0)
+				{
+					auto_running_.dead_reckoning_.setPosX((static_cast<float>(receive_pos_x) * LRF_WEIGHT) + (auto_running_.dead_reckoning_.readPosX() * (1.0f - LRF_WEIGHT)));
+				}
+				if(receive_pos_y != 0)
+				{
+					auto_running_.dead_reckoning_.setPosY((static_cast<float>(receive_pos_y) * LRF_WEIGHT) + (auto_running_.dead_reckoning_.readPosY() * (1.0f - LRF_WEIGHT)));
+				}
 			}
 			receive_count = 0;
 		}

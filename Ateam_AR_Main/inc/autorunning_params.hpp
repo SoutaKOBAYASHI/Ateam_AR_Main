@@ -18,7 +18,7 @@ constexpr float WHEEL_DIA							= 101.6f;
 constexpr bool	WHEEL_DIR							= false;
 constexpr float	THETA_OFFSET						= -0.75f * M_PI;
 
-constexpr int32_t 			AUTO_RUNNING_ERROR			= 150;
+constexpr int32_t 			AUTO_RUNNING_ERROR			= 200;
 constexpr int32_t			AUTO_RUNNING_ERROR_ENDPOINT	= 10;
 constexpr float 			ROLLING_SPEED				= 100.0f;
 constexpr pid_gain<float> 	ROLLING_GAIN				= {-180.0f, -0.00f, -0.31f};

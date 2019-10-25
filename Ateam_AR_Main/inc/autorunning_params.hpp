@@ -28,13 +28,17 @@ constexpr uint8_t	MECHA_CONTROLER_ADDRESS	= 0x01;
 
 constexpr OmniWheel4s::OmniWheel4s_ParamStruct OMNI_PARAMS =
 {
-	MOTOR1_PARAMS,
-	MOTOR2_PARAMS,
-	MOTOR3_PARAMS,
-	MOTOR4_PARAMS,
-	WHEEL_DIA,
-	WHEEL_DIR,
-	THETA_OFFSET
+	.wheel1_param = MOTOR1_PARAMS,
+	.wheel2_param = MOTOR2_PARAMS,
+	.wheel3_param = MOTOR3_PARAMS,
+	.wheel4_param = MOTOR4_PARAMS,
+	.wheel1_address = 0x14,
+	.wheel2_address	= 0x15,
+	.wheel3_address = 0x12,
+	.wheel4_address = 0x13,
+	.wheel_dia = WHEEL_DIA,
+	.direction = WHEEL_DIR,
+	.angle_offset = THETA_OFFSET
 };
 
 constexpr AutoRunning::AutoRunningParamsStruct AUTO_RUNNING_PARAMS =
